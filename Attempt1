@@ -1,88 +1,51 @@
-
 #include <iostream>
-#include <fstream>
-#include <cmath>
+using namespace std;
 #include <iomanip>
 
-
-using namespace std;
-
-int main()
-
+int main ()
 {
-
-	//////////////////////////////////////////////////////////////////////////////////////////
-
-	double total_Units;
-	double apt_Rent, maintenance_Cost, increase_in_Rent, rent_after_Increase, total_Maintenance;
-	double max_Profit, profit, income, rent;
-	double n;
-
-	total_Units = 50.0;
-	increase_in_Rent = 40.0;
-	maintenance_Cost = 27.0;
-	apt_Rent = 600.0; // only when all units are occupied
-	max_Profit = 0.0;
-	n = 50.0 - total_Units;
-	rent_after_Increase = apt_Rent + increase_in_Rent;
-
-	/////////////////////////////////////////////////////////////////////////////////////////
-
-	cout << "Enter total number of units";
-
-	cin >> total_Units;
-
-	cout << "Enter cost in rent while all units are occupied";
-
-	cin >> apt_Rent;
-
-	cout << "Enter increase in rent per vacancy";
-
-	cin >> increase_in_Rent;
-
-	cout << "Enter the amount it costs to maintain a rented unit";
-
-	cin >> rent_after_Increase;
-
-	////////////////////////////////////////////////////////////////////////////////////////
-
-	for (double units = 50.0; units > 0.0; units--, rent += increase_in_Rent)
-
-	{
-
-		income = total_Units * apt_Rent;
-
-		total_Maintenance = total_Units * maintenance_Cost;
-
-		profit = income - total_Maintenance;
-
-		if (units == 50.0)
-
-		{
-			max_Profit = profit;
-		}
+//variable declare
+double rent, maintenance, maintenanceCost,increaseRent;
+double income,profit, maxProfit=0;
+int n;
+int unit;
 
 
+cout << "Enter the total number of units: ";
+cin >> unit;
+//ask user to enter rent to occupy all units
+cout << "The rent to occupy all units: ";
+cin >> rent;
+//ask user to enter the increase in rent that results in a vacantunit
+cout << "The increase in rent that results in a vacant unit: ";
+cin >> increaseRent;
+//ask user to enter amount to maintain a rented unit:
+cout << "Enter the amount to maintain a rentedunit:";
+cin >> maintenanceCost;
 
-		else if (profit > max_Profit)
+//check for ever number of unit what is the maximum profit
+for(int units = unit; units > 0; units--, rent +=increaseRent)
+{
+income = units * rent;
+maintenance = units * maintenanceCost;
+profit = income - maintenance;
+  
+if (profit > maxProfit)
+{
+maxProfit = profit;
+n = units;
 
-		{
-			max_Profit += profit;
+}
+  
 
-			n = 50.0 - total_Units;
-		}
-
-		/////////////////////////////////////////////////////////////////////////////////////////
-
-		cout << "Max number of profit that can be made is:";
-
-		cout << n;
-
-		cout << "\n";
+}
 
 
+cout << "Number units to be rented to maximize profit is";
+cout << n;
 
-		return 0;
+cout << fixed << showpoint << setprecision(2) << "Maximum Profit: " << maxProfit << '\n';
 
-	}
+
+return 0;
 }
